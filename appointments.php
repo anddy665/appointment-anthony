@@ -11,23 +11,6 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// Define plugin paths.
-define('APPOINTMENT_PLUGIN_DIR', plugin_dir_path(__FILE__));
-define('APPOINTMENT_PLUGIN_URL', plugin_dir_url(__FILE__));
-
-// Include necessary files.
-include_once APPOINTMENT_PLUGIN_DIR . 'admin/inc/admin-functions.php';
-include_once APPOINTMENT_PLUGIN_DIR . 'appointments/inc/appointment-functions.php';
-
-// Initialize admin functions.
-if (is_admin()) {
-    new Admin_Functions();
-}
-
-// Initialize public appointment form functionality.
-new Appointment_Functions();
-
-
 register_activation_hook(__FILE__, 'appointment_plugin_install');
 
 function appointment_plugin_install() {
