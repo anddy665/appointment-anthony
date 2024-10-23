@@ -20,7 +20,7 @@ class DatabaseTables {
         $this->appointment_schedule_table = $wpdb->prefix . 'appointment_schedule';
     }
 
-    public function create_tables() {
+    public function createTables() {
         $sql_appointment = "CREATE TABLE {$this->appointment_table} (
             id mediumint(9) NOT NULL AUTO_INCREMENT,
             name varchar(255) NOT NULL,
@@ -55,8 +55,9 @@ class DatabaseTables {
         dbDelta($sql_appointment_schedule);
     }
 
-    public function delete_tables() {
-        $sql = "DROP TABLE IF EXISTS {$this->appointment_table}, {$this->schedule_table}, {$this->appointment_schedule_table};";
+    public function deleteTables() {
+        $sql = "DROP TABLE IF EXISTS {$this->appointment_schedule_table}, {$this->schedule_table}, {$this->appointment_table};";
         $this->wpdb->query($sql);
     }
 }
+

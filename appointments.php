@@ -11,11 +11,10 @@ if (!defined('ABSPATH')) {
 }
 
 define('MY_PLUGIN_DIR', plugin_dir_path(__FILE__));
-define('MY_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 require_once MY_PLUGIN_DIR . 'inc/DatabaseTables.php'; 
 
-class Appointment_Booking_Plugin {
+class AppointmentBookingPlugin {
 
     private $dbTables;
 
@@ -23,17 +22,18 @@ class Appointment_Booking_Plugin {
         global $wpdb;
         $this->dbTables = new DatabaseTables($wpdb);
 
-        register_activation_hook(__FILE__, array($this, 'install_plugin'));
-        register_deactivation_hook(__FILE__, array($this, 'uninstall_plugin'));
+        register_activation_hook(__FILE__, array($this, 'installPlugin'));
+        register_deactivation_hook(__FILE__, array($this, 'uninstallPlugin'));
     }
 
-    public function install_plugin() {
-        $this->dbTables->create_tables();
+    public function installPlugin() {
+        $this->dbTables->createTables();
     }
 
-    public function uninstall_plugin() {
-        $this->dbTables->delete_tables(); 
+    public function uninstallPlugin() {
+        $this->dbTables->deleteTables(); 
     }
 }
 
-new Appointment_Booking_Plugin();
+new AppointmentBookingPlugin();
+
