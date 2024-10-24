@@ -11,8 +11,17 @@ if (!defined('ABSPATH')) {
 }
 
 define('MY_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('MY_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 require_once MY_PLUGIN_DIR . 'inc/DatabaseTables.php'; 
+
+if (is_admin()) {
+    require_once MY_PLUGIN_DIR . 'admin/admin.php';
+}
+
+if (!is_admin()) {
+    require_once MY_PLUGIN_DIR . 'public/public.php';
+}
 
 class AppointmentBookingPlugin {
 
