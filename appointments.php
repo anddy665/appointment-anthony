@@ -19,9 +19,9 @@ if (is_admin()) {
     require_once MY_PLUGIN_DIR . 'admin/admin.php';
 }
 
-if (!is_admin()) {
-    require_once MY_PLUGIN_DIR . 'public/public.php';
-}
+// if (!is_admin()) {
+//     require_once MY_PLUGIN_DIR . 'public/public.php';
+// }
 
 class AppointmentBookingPlugin {
 

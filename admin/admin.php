@@ -13,10 +13,10 @@ class MyPluginAdmin {
     public function add_admin_menu() {
         // Main menu page
         add_menu_page(
-            'My Appointments Settings',             // Page title
+            'My Appointments',             // Page title
             'Appointments',                      // Menu title
             'manage_options',                 // Capability
-            'my-plugin-settings',             // Menu slug
+            'my-appointments',             // Menu slug
             array($this, 'render_main_page'),  // Function that renders the main page
             'dashicons-calendar-alt',        // Icon
             6                                 // Position in menu
@@ -24,13 +24,24 @@ class MyPluginAdmin {
 
         // Submenu 2: Reports
         add_submenu_page(
-            'my-plugin-settings',             // Parent slug (main menu)
-            'Scheduling',                        // Page title
-            'Scheduling',                        // Submenu title
+            'my-appointments',             // Parent slug (main menu)
+            'My Schedule',                        // Page title
+            'My schedule',                        // Submenu title
             'manage_options',                 // Capability
-            'my-plugin-reports',              // Submenu slug
-            array($this, 'render_reports_page') // Function to render submenu page
+            'my-schedule',              // Submenu slug
+            array($this, 'render_schedule_page') // Function to render submenu page
         );
+
+         // Submenu: New Appointment
+         add_submenu_page(
+            null,                             // No parent menu, so it won't appear in the sidebar
+            'Add New Schedule',                // Page title
+            'Add New Schedule',                // Menu title (not used since it's hidden)
+            'manage_options',                 // Capability
+            'add-new-schedule',            // Menu slug
+            array($this, 'render_add_new_schedule_page') // Function to render the page
+        );
+
     }
 
     // Load admin assets (CSS/JS)
@@ -45,8 +56,22 @@ class MyPluginAdmin {
     }
 
     // Render the Reports submenu page content
-    public function render_reports_page() {
-        include_once MY_PLUGIN_DIR . 'admin/templates/reports-page.php';
+    public function render_schedule_page() {
+        include_once MY_PLUGIN_DIR . 'admin/templates/scheduling-page.php';
+    }
+
+    function render_add_new_schedule_page() {
+        if (isset($_POST['new_appointment_submit'])) {
+            $appointment_title = sanitize_text_field($_POST['appointment_title']);
+            $appointment_date = sanitize_text_field($_POST['appointment_date']);
+    
+            add_option('appointment_title', $appointment_title);
+            add_option('appointment_date', $appointment_date);
+    
+            echo '<div class="notice notice-success"><p>New appointment added successfully!</p></div>';
+        }
+    
+        include_once MY_PLUGIN_DIR . 'admin/templates/add-new-schedule.php';
     }
 }
 
