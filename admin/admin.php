@@ -25,8 +25,8 @@ class MyPluginAdmin {
         // Submenu 2: Reports
         add_submenu_page(
             'my-appointments',             // Parent slug (main menu)
-            'My Schedule',                        // Page title
-            'My schedule',                        // Submenu title
+            'Schedule',                        // Page title
+            'Schedule',                        // Submenu title
             'manage_options',                 // Capability
             'my-schedule',              // Submenu slug
             array($this, 'render_schedule_page') // Function to render submenu page
@@ -73,6 +73,6 @@ class MyPluginAdmin {
     
         include_once MY_PLUGIN_DIR . 'admin/templates/add-new-schedule.php';
     }
-}
+ }
 
 new MyPluginAdmin();

@@ -1,24 +1,23 @@
-<div class="wrap">
-    <h1>New Appointment</h1>
+ <h1>Add New Schedule</h1>
     <form method="post">
-        <table class="form-table">
-            <tr>
-                <th scope="row">
-                    <label for="appointment_title">Appointment Title</label>
-                </th>
-                <td>
-                    <input type="text" name="appointment_title" id="appointment_title" class="regular-text" required>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">
-                    <label for="appointment_date">Appointment Date</label>
-                </th>
-                <td>
-                    <input type="date" name="appointment_date" id="appointment_date" required>
-                </td>
-            </tr>
-        </table>
-        <?php submit_button('Add Appointment', 'primary', 'new_appointment_submit'); ?>
+        <input type="hidden" name="action" value="add_new_schedule">
+        <label for="date">Date:</label>
+        <select name="cars" id="cars" form="carform">
+            <option value="Sunday">Sunday</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+        </select>
+        
+        <label for="start_time">Start Time:</label>
+        <input type="time" name="start_time" id="start_time" required>
+        
+        <label for="end_time">End Time:</label>
+        <input type="time" name="end_time" id="end_time" required>
+        
+        <input type="submit" value="Add Schedule">
     </form>
-</div>
+    
